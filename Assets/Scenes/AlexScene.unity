@@ -718,12 +718,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  missilePrefab: {fileID: 6030270938080876101, guid: 14aba2b2a83c40a42be8cb5ced51efe9, type: 3}
+  - {fileID: 1608723814377566954, guid: a86b086f7582b124f9a24393d6a2e6ef, type: 3}
+  - {fileID: 1608723814377566954, guid: 325be739f70f4d24ba3cbcd804e32984, type: 3}
+  - {fileID: 1608723814377566954, guid: a7fa9511ee4dbd84687ce50a0ef2639d, type: 3}
+  - {fileID: 1608723814377566954, guid: 325be739f70f4d24ba3cbcd804e32984, type: 3}
+  - {fileID: 1608723814377566954, guid: a86b086f7582b124f9a24393d6a2e6ef, type: 3}
+  missilePrefab: {fileID: 6455478923663831442, guid: 14aba2b2a83c40a42be8cb5ced51efe9, type: 3}
 --- !u!4 &1338744073
 Transform:
   m_ObjectHideFlags: 0
@@ -733,8 +733,8 @@ Transform:
   m_GameObject: {fileID: 1338744071}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

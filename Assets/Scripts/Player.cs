@@ -7,8 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player : MonoBehaviour
 {
-    public Laser laserPrefab;
-    Laser laser;
+    public GameObject laserPrefab;
+    GameObject laser;
     float speed = 5f;
 
     // Update is called once per frame

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Invaders : MonoBehaviour
 {
-    public Invader[] prefab = new Invader[5];
+    public GameObject[] prefab = new GameObject[5];
 
     private int row = 5;
     private int col = 11;
@@ -14,7 +14,7 @@ public class Invaders : MonoBehaviour
     private Vector3 initialPosition;
     private Vector3 direction = Vector3.right;
 
-    public Missile missilePrefab;
+    public GameObject missilePrefab;
 
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class Invaders : MonoBehaviour
             
             for (int c = 0; c < col; c++)
             {
-                Invader tempInvader = Instantiate(prefab[r], transform);
+                GameObject tempInvader = Instantiate(prefab[r], transform);
 
                 Vector3 position = rowPosition;
                 position.x += 2f * c;

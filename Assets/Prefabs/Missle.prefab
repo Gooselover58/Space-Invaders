@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Missle
       objectReference: {fileID: 0}
+    - target: {fileID: 7392292734461532105, guid: 5d0aec60716c43644a224fbed9536f2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4635563879892907864, guid: 5d0aec60716c43644a224fbed9536f2a, type: 3}
     m_RemovedGameObjects: []

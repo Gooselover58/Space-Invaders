@@ -12,13 +12,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser
       objectReference: {fileID: 0}
+    - target: {fileID: 7655378155238469682, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655378155238469682, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655378155238469682, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655378155238469682, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655378155238469682, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655378155238469682, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 7655378155238469682, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
+      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8380742030500538273, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.05784501
+      value: -8.858015
       objectReference: {fileID: 0}
     - target: {fileID: 8380742030500538273, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.1874359
+      value: -2.3807216
       objectReference: {fileID: 0}
     - target: {fileID: 8380742030500538273, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
       propertyPath: m_LocalPosition.z
@@ -57,6 +85,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5124520743131256071, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 3316924114203885339}
+    - targetCorrespondingSourceObject: {fileID: 5124520743131256071, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
       insertIndex: -1
       addedObject: {fileID: -6462790990398858394}
     - targetCorrespondingSourceObject: {fileID: 5124520743131256071, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
@@ -68,6 +99,58 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5124520743131256071, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
   m_PrefabInstance: {fileID: 2417104121903596238}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &3316924114203885339
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7392292734461532105}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 2d74dfe5cfb2cdd439ec80b67071c69d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.125, y: 0.375}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!50 &-6462790990398858394
 Rigidbody2D:
   serializedVersion: 4
@@ -83,7 +166,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

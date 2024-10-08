@@ -12,9 +12,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser
       objectReference: {fileID: 0}
+    - target: {fileID: 5124520743131256071, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7655378155238469682, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7655378155238469682, guid: 92143ed718defe24e9e0d1d13d09c235, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x

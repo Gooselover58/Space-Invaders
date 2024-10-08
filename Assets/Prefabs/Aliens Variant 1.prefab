@@ -40,6 +40,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aliens Variant 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1613443623692582901, guid: e882742b7531d024c9cb8814ea07e151, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2493688975559359025, guid: e882742b7531d024c9cb8814ea07e151, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5

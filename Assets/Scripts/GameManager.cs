@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private MysteryShip mysteryShip;
     private Bunker[] bunkers;
     private Camera cam;
+    private ParticleSystem deathParticles;
 
     //Används ej just nu, men ni kan använda de senare
     public int score { get; private set; } = 0;
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
         mysteryShip = FindObjectOfType<MysteryShip>();
         bunkers = FindObjectsOfType<Bunker>();
         cam = Camera.main;
+        deathParticles = FindObjectOfType<ParticleSystem>();
         StartCoroutine(ToTheBeat());
         NewGame();
     }
@@ -92,6 +94,14 @@ public class GameManager : MonoBehaviour
         cam.orthographicSize = zoom - (intensity / 10);
         yield return new WaitForSeconds(duration);
         cam.orthographicSize = zoom;
+    }
+
+    private void PlayDeathParticles(Vector2 pos)
+    {
+        var emitParams = new ParticleSystem.EmitParams();
+        emitParams.applyShapeToPosition = true;
+        emitParams.position = pos;
+        deathParticles.Emit(emitParams, 20);
     }
 
     private void NewGame()
@@ -146,6 +156,7 @@ public class GameManager : MonoBehaviour
 
     public void OnInvaderKilled(Invader invader)
     {
+        PlayDeathParticles(invader.transform.position);
         invader.gameObject.SetActive(false);
 
        

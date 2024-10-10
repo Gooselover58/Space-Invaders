@@ -7,8 +7,11 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Laser : Projectile
 {
+    private bool isOnBeat;
+
     private void Awake()
     {
+        isOnBeat = false;
         direction = Vector3.up;
         if (GameManager.Instance.onBeat)
         {
@@ -16,6 +19,7 @@ public class Laser : Projectile
             transform.localScale *= 1.5f;
             speed *= 1.5f;
             GameManager.Instance.ScreenThrust(-2, 0.1f);
+            isOnBeat = true;
         }
     }
 
@@ -33,7 +37,11 @@ public class Laser : Projectile
     {
         Bunker bunker = collision.gameObject.GetComponent<Bunker>();
 
-        if(bunker == null) //Om det inte är en bunker vi träffat så ska skottet försvinna.
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Invader") && isOnBeat)
+        {
+
+        }
+        else if(bunker == null) //Om det inte är en bunker vi träffat så ska skottet försvinna.
         {
             Destroy(gameObject);
         }

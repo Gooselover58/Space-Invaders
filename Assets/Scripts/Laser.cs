@@ -11,6 +11,7 @@ public class Laser : Projectile
 
     private void Awake()
     {
+        speed = 12f;
         isOnBeat = false;
         direction = Vector3.up;
         if (GameManager.Instance.onBeat)

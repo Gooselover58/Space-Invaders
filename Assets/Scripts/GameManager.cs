@@ -2,14 +2,16 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Timeline.Actions;
+using TMPro;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public bool onBeat;
-    public float pitch;
-    [SerializeField] float beatInterval = 1f;
+    [HideInInspector] public bool onBeat;
+    [HideInInspector] public float pitch;
+    [SerializeField] float beatInterval;
+    [SerializeField] float beatDuration;
     private Player player;
     private Invaders invaders;
     private MysteryShip mysteryShip;
@@ -17,6 +19,7 @@ public class GameManager : MonoBehaviour
     private Camera cam;
     private ParticleSystem deathParticles;
     private AudioSource hitSound;
+    //private TextMeshProUGUI
 
     //Används ej just nu, men ni kan använda de senare
     public int score { get; private set; } = 0;
@@ -51,7 +54,7 @@ public class GameManager : MonoBehaviour
         bunkers = FindObjectsOfType<Bunker>();
         cam = Camera.main;
         deathParticles = GameObject.Find("DeathParticles").GetComponent<ParticleSystem>();
-        hitSound = FindObjectOfType<AudioSource>();
+        hitSound = GameObject.Find("SoundPlayer").GetComponent<AudioSource>();
         StartCoroutine(ToTheBeat());
         NewGame();
     }
@@ -66,22 +69,23 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ToTheBeat()
     {
+        yield return new WaitForSeconds(0.5f);
         while (true)
         {
-            yield return new WaitForSeconds(beatInterval);
             onBeat = true;
             foreach (GameObject invader in Invaders.invaders)
             {
                 Vector2 size = invader.transform.localScale;
                 invader.transform.localScale = size * 1.5f;
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(beatDuration);
             onBeat = false;
             foreach (GameObject invader in Invaders.invaders)
             {
                 Vector2 size = invader.transform.localScale;
                 invader.transform.localScale = size / 1.5f;
             }
+            yield return new WaitForSeconds(beatInterval);
         }
     }
 
@@ -123,9 +127,14 @@ public class GameManager : MonoBehaviour
         {
             bunkers[i].ResetBunker();
         }
-
+        //StartCoroutine(RoundText());
         Respawn();
     }
+
+    /*private IEnumerator RoundText()
+    {
+
+    }*/
 
     private void Respawn()
     {

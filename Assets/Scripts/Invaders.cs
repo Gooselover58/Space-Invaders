@@ -16,10 +16,12 @@ public class Invaders : MonoBehaviour
     private Vector3 direction = Vector3.right;
 
     public GameObject missilePrefab;
+    public float speed;
 
     private void Awake()
     {
         initialPosition = transform.position;
+        speed = 1f;
         CreateInvaderGrid();
     }
 
@@ -56,7 +58,7 @@ public class Invaders : MonoBehaviour
     {
         direction = Vector3.right;
         transform.position = initialPosition;
-
+        speed *= 1.1f;
         foreach(Transform invader in transform)
         {
             invader.gameObject.SetActive(true);
@@ -106,7 +108,6 @@ public class Invaders : MonoBehaviour
     //Flyttar invaders åt sidan
     void Update()
     {
-        float speed = 1f;
         transform.position += speed * Time.deltaTime * direction;
 
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);

@@ -676,7 +676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a75393d6c77884f8d097ebd6c029c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserPrefab: {fileID: 4635563879892907864, guid: 5d0aec60716c43644a224fbed9536f2a, type: 3}
+  laserPrefab: {fileID: 0}
 --- !u!61 &685714024
 BoxCollider2D:
   m_ObjectHideFlags: 0

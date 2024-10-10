@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class Laser : Projectile
@@ -10,6 +10,13 @@ public class Laser : Projectile
     private void Awake()
     {
         direction = Vector3.up;
+        if (GameManager.Instance.onBeat)
+        {
+            GetComponent<SpriteRenderer>().color = Color.yellow;
+            transform.localScale *= 1.5f;
+            speed *= 1.5f;
+            GameManager.Instance.ScreenThrust(-2, 0.1f);
+        }
     }
 
     void Update()

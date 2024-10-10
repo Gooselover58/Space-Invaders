@@ -7,11 +7,13 @@ using UnityEditor.Timeline.Actions;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public static float beatInterval = 1f;
+    public bool onBeat;
+    [SerializeField] float beatInterval = 1f;
     private Player player;
     private Invaders invaders;
     private MysteryShip mysteryShip;
     private Bunker[] bunkers;
+    private Camera cam;
 
     //Används ej just nu, men ni kan använda de senare
     public int score { get; private set; } = 0;
@@ -39,11 +41,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        onBeat = false;
         player = FindObjectOfType<Player>();
         invaders = FindObjectOfType<Invaders>();
         mysteryShip = FindObjectOfType<MysteryShip>();
         bunkers = FindObjectsOfType<Bunker>();
-
+        cam = Camera.main;
+        StartCoroutine(ToTheBeat());
         NewGame();
     }
 
@@ -55,9 +59,43 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private IEnumerator ToTheBeat()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(beatInterval);
+            onBeat = true;
+            foreach (GameObject invader in Invaders.invaders)
+            {
+                Vector2 size = invader.transform.localScale;
+                invader.transform.localScale = size * 1.5f;
+            }
+            yield return new WaitForSeconds(0.1f);
+            onBeat = false;
+            foreach (GameObject invader in Invaders.invaders)
+            {
+                Vector2 size = invader.transform.localScale;
+                invader.transform.localScale = size / 1.5f;
+            }
+        }
+    }
+
+    public void ScreenThrust(float intensity, float duration)
+    {
+        StopCoroutine("ScreenThrustCo");
+        StartCoroutine(ScreenThrustCo(intensity, duration));
+    }
+
+    private IEnumerator ScreenThrustCo(float intensity, float duration)
+    {
+        float zoom = cam.orthographicSize;
+        cam.orthographicSize = zoom - (intensity / 10);
+        yield return new WaitForSeconds(duration);
+        cam.orthographicSize = zoom;
+    }
+
     private void NewGame()
     {
-
         SetScore(0);
         SetLives(3);
         NewRound();

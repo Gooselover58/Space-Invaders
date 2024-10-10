@@ -7,6 +7,7 @@ using UnityEngine;
 public class Invaders : MonoBehaviour
 {
     public GameObject[] prefab = new GameObject[5];
+    public static List<GameObject> invaders = new List<GameObject>();
 
     private int row = 5;
     private int col = 11;
@@ -42,7 +43,7 @@ public class Invaders : MonoBehaviour
             for (int c = 0; c < col; c++)
             {
                 GameObject tempInvader = Instantiate(prefab[r], transform);
-
+                invaders.Add(tempInvader);
                 Vector3 position = rowPosition;
                 position.x += 2f * c;
                 tempInvader.transform.localPosition = position;

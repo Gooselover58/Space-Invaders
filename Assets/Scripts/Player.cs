@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && laser == null)
         {
+            GameManager.Instance.pitch = Random.Range(0.8f, 1.1f);
             laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
         }
     }

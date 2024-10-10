@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public bool onBeat;
+    public float pitch;
     [SerializeField] float beatInterval = 1f;
     private Player player;
     private Invaders invaders;
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     private Bunker[] bunkers;
     private Camera cam;
     private ParticleSystem deathParticles;
+    private AudioSource hitSound;
 
     //Används ej just nu, men ni kan använda de senare
     public int score { get; private set; } = 0;
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
         bunkers = FindObjectsOfType<Bunker>();
         cam = Camera.main;
         deathParticles = GameObject.Find("DeathParticles").GetComponent<ParticleSystem>();
+        hitSound = FindObjectOfType<AudioSource>();
         StartCoroutine(ToTheBeat());
         NewGame();
     }
@@ -157,6 +160,9 @@ public class GameManager : MonoBehaviour
     public void OnInvaderKilled(Invader invader)
     {
         PlayDeathParticles(invader.transform.position);
+        hitSound.pitch = pitch;
+        hitSound.PlayOneShot(hitSound.clip, pitch);
+        pitch += 0.05f;
         invader.gameObject.SetActive(false);
 
        

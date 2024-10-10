@@ -7,7 +7,7 @@ using UnityEditor.Timeline.Actions;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
+    public static float beatInterval = 1f;
     private Player player;
     private Invaders invaders;
     private MysteryShip mysteryShip;

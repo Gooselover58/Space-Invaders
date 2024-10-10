@@ -15,15 +15,9 @@ public class Player : MonoBehaviour
     void Update()
     {
         Vector3 position = transform.position;
+        float x = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            position.x -= speed * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            position.x += speed * Time.deltaTime;
-        }
+        position.x += x * speed * Time.deltaTime;
 
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
         Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);

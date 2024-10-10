@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         mysteryShip = FindObjectOfType<MysteryShip>();
         bunkers = FindObjectsOfType<Bunker>();
         cam = Camera.main;
-        deathParticles = FindObjectOfType<ParticleSystem>();
+        deathParticles = GameObject.Find("DeathParticles").GetComponent<ParticleSystem>();
         StartCoroutine(ToTheBeat());
         NewGame();
     }

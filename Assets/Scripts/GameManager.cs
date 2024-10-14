@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private Camera cam;
     private ParticleSystem deathParticles;
     private AudioSource hitSound;
+    private AudioClip shootSound;
     //private TextMeshProUGUI
 
     //Används ej just nu, men ni kan använda de senare
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        shootSound = Resources.Load<AudioClip>("Sound/35678__jobro__laser10");
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -161,9 +163,13 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerKilled(Player player)
     {
-
         player.gameObject.SetActive(false);
+    }
 
+    public void PlayShootSound()
+    {
+        float thisPitch = Random.Range(0.2f, 0.8f);
+        hitSound.PlayOneShot(shootSound);
     }
 
     public void OnInvaderKilled(Invader invader)
@@ -173,8 +179,6 @@ public class GameManager : MonoBehaviour
         hitSound.PlayOneShot(hitSound.clip, pitch);
         pitch += 0.05f;
         invader.gameObject.SetActive(false);
-
-       
 
         if (invaders.GetInvaderCount() == 0)
         {

@@ -852,6 +852,7 @@ MonoBehaviour:
   - {fileID: 1608723814377566954, guid: a86b086f7582b124f9a24393d6a2e6ef, type: 3}
   - {fileID: 1608723814377566954, guid: 325be739f70f4d24ba3cbcd804e32984, type: 3}
   missilePrefab: {fileID: 6455478923663831442, guid: 14aba2b2a83c40a42be8cb5ced51efe9, type: 3}
+  speed: 0
 --- !u!4 &1037199976
 Transform:
   m_ObjectHideFlags: 0

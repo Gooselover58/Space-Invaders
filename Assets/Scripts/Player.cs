@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private bool isDying;
     private BoxCollider2D col;
     private ParticleSystem deathPart;
+    private float time;
 
     private void Awake()
     {
@@ -25,10 +26,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         Vector3 position = transform.position;
+        time += Time.deltaTime;
         if (!isDying)
         {
             float x = Input.GetAxisRaw("Horizontal");
-
+            Quaternion rot = Quaternion.Euler(0, 0, 0 * 30f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rot, time);
             position.x += x * speed * Time.deltaTime;
 
             Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);

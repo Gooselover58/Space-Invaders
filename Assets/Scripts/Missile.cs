@@ -19,6 +19,7 @@ public class Missile : Projectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        GameManager.Instance.PlayCollisionParts(transform.position);
         Destroy(gameObject); //så fort den krockar med något så ska den försvinna.
     }
    

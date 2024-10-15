@@ -14,10 +14,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] float beatDuration;
     private Player player;
     private Invaders invaders;
-    private MysteryShip mysteryShip;
     private Bunker[] bunkers;
     private Camera cam;
     private ParticleSystem deathParticles;
+    private ParticleSystem collisionParticles;
     private AudioSource hitSound;
     private AudioClip shootSound;
     //private TextMeshProUGUI
@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        collisionParticles = GameObject.Find("CollisionParticles").GetComponent<ParticleSystem>();
         shootSound = Resources.Load<AudioClip>("Sound/35678__jobro__laser10");
         if (Instance != null)
         {
@@ -52,7 +53,6 @@ public class GameManager : MonoBehaviour
         onBeat = false;
         player = FindObjectOfType<Player>();
         invaders = FindObjectOfType<Invaders>();
-        mysteryShip = FindObjectOfType<MysteryShip>();
         bunkers = FindObjectsOfType<Bunker>();
         cam = Camera.main;
         deathParticles = GameObject.Find("DeathParticles").GetComponent<ParticleSystem>();
@@ -200,4 +200,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PlayCollisionParts(Vector2 pos)
+    {
+        var emitParams = new ParticleSystem.EmitParams();
+        emitParams.applyShapeToPosition = true;
+        emitParams.position = pos;
+        collisionParticles.Emit(emitParams, 100);
+    }
 }

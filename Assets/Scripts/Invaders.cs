@@ -20,6 +20,8 @@ public class Invaders : MonoBehaviour
 
     private void Awake()
     {
+        row = 5;
+        col = 11;
         initialPosition = transform.position;
         speed = 1f;
         CreateInvaderGrid();

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float pitch;
     [SerializeField] float beatInterval;
     [SerializeField] float beatDuration;
+    [SerializeField] TextMeshProUGUI roundText;
     private Player player;
     private Invaders invaders;
     private Bunker[] bunkers;
@@ -20,7 +21,10 @@ public class GameManager : MonoBehaviour
     private ParticleSystem collisionParticles;
     private AudioSource hitSound;
     private AudioClip shootSound;
-    //private TextMeshProUGUI
+    private int round;
+    private int playerLives;
+    private int playerScore;
+    public bool playerDead;
 
     //Används ej just nu, men ni kan använda de senare
     public int score { get; private set; } = 0;
@@ -28,8 +32,10 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        playerDead = false;
         collisionParticles = GameObject.Find("CollisionParticles").GetComponent<ParticleSystem>();
         shootSound = Resources.Load<AudioClip>("Sound/35678__jobro__laser10");
+        roundText.gameObject.SetActive(false);
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -63,7 +69,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (lives <= 0 && Input.GetKeyDown(KeyCode.Return))
+        if (playerDead && Input.GetKeyDown(KeyCode.Return))
         {
             NewGame();
         }
@@ -115,6 +121,7 @@ public class GameManager : MonoBehaviour
 
     private void NewGame()
     {
+        round = 1;
         SetScore(0);
         SetLives(3);
         NewRound();
@@ -122,6 +129,16 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
+        StartCoroutine(RoundText());
+    }
+
+    private IEnumerator RoundText()
+    {
+        roundText.text = $"Round {round}";
+        roundText.gameObject.SetActive(true);
+        round++;
+        yield return new WaitForSeconds(2);
+        roundText.gameObject.SetActive(false);
         invaders.ResetInvaders();
         invaders.gameObject.SetActive(true);
 
@@ -130,13 +147,9 @@ public class GameManager : MonoBehaviour
             bunkers[i].ResetBunker();
         }
         //StartCoroutine(RoundText());
+        invaders.CreateInvaderGrid();
         Respawn();
     }
-
-    /*private IEnumerator RoundText()
-    {
-
-    }*/
 
     private void Respawn()
     {
@@ -153,12 +166,17 @@ public class GameManager : MonoBehaviour
 
     private void SetScore(int score)
     {
-        
+        playerScore = score;
     }
 
     private void SetLives(int lives)
     {
-       
+        playerLives = lives;
+    }
+
+    public void ChangeLives(int change)
+    {
+        playerLives -= change;
     }
 
     public void OnPlayerKilled(Player player)

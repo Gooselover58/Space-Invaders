@@ -25,7 +25,6 @@ public class Invaders : MonoBehaviour
         col = 11;
         initialPosition = transform.position;
         speed = 1f;
-        CreateInvaderGrid();
     }
 
     private void Start()
@@ -34,9 +33,9 @@ public class Invaders : MonoBehaviour
     }
 
     //Skapar själva griden med alla invaders.
-    void CreateInvaderGrid()
+    public void CreateInvaderGrid()
     {
-        for(int r = 0; r < row; r++)
+        for (int r = 0; r < row; r++)
         {
             float width = 2f * (col - 1);
             float height = 2f * (row - 1);

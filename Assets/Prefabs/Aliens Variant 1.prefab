@@ -20,6 +20,22 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7926010283224433978, guid: e882742b7531d024c9cb8814ea07e151, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7926010283224433978, guid: e882742b7531d024c9cb8814ea07e151, type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: 0e8fb9812f68b1e43b4e639bcf40f718, type: 2}
+    - target: {fileID: -7926010283224433978, guid: e882742b7531d024c9cb8814ea07e151, type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7400000, guid: f8e65d981be3bfa49811ce3e22312457, type: 2}
+    - target: {fileID: -7926010283224433978, guid: e882742b7531d024c9cb8814ea07e151, type: 3}
+      propertyPath: m_Animations.Array.data[2]
+      value: 
+      objectReference: {fileID: 7400000, guid: 7220dd299421b60408f09d6da5b64cfa, type: 2}
     - target: {fileID: -6914735886157388829, guid: e882742b7531d024c9cb8814ea07e151, type: 3}
       propertyPath: m_GravityScale
       value: 0
@@ -88,6 +104,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5250274341342769809, guid: e882742b7531d024c9cb8814ea07e151, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 90a878b7a6775b9488f8fc30e94b5671, type: 2}
     - target: {fileID: 6831618344921553100, guid: e882742b7531d024c9cb8814ea07e151, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

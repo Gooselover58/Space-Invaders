@@ -48,7 +48,10 @@ public class Laser : Projectile
             {
                 GameManager.Instance.PlayCollisionParts(transform.position);
             }
-            GameManager.Instance.ChangeScore(5);
+            else
+            {
+                GameManager.Instance.ChangeScore(5);
+            }
             Destroy(gameObject);
             GameManager.Instance.scoreMult = 1f;
             GameManager.Instance.UpdateScoreUI();

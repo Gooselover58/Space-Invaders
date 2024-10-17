@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class Invaders : MonoBehaviour
 {
-    public GameObject[] prefab = new GameObject[7];
+    public GameObject[] prefab = new GameObject[6];
     public static List<GameObject> invaders = new List<GameObject>();
 
     [SerializeField] float shootDelay;
     [SerializeField] Transform invaderHolder;
-    private int row = 7;
+    private int row = 6;
     private int col = 17;
     private bool hasCreatedGrid;
 
@@ -25,9 +25,9 @@ public class Invaders : MonoBehaviour
     {
         hasCreatedGrid = false;
         row = 7;
-        col = 17;
+        col = 13;
         initialPosition = transform.position;
-        speed = 1f;
+        speed = 0.7f;
     }
 
     private void Start()
@@ -52,7 +52,7 @@ public class Invaders : MonoBehaviour
 
                 for (int c = 0; c < col; c++)
                 {
-                    Transform inWhichToSpawn = (r > 5) ? invaderHolder : transform;
+                    Transform inWhichToSpawn = (r > 5) ? transform : transform;
                     GameObject tempInvader = Instantiate(prefab[r], inWhichToSpawn);
                     invaders.Add(tempInvader);
                     tempInvader.SetActive(false);
@@ -67,13 +67,13 @@ public class Invaders : MonoBehaviour
     //Aktiverar alla invaders igen och placerar från ursprungsposition
     public void ResetInvaders()
     {
-        if (GameManager.Instance.round == 3 || GameManager.Instance.round == 6)
+        /*if (GameManager.Instance.round == 3 || GameManager.Instance.round == 6)
         {
             IncreaseInvaderCount();
-        }
+        }*/
         direction = Vector3.right;
         transform.position = initialPosition;
-        speed *= 1.5f;
+        speed *= 1.3f;
         foreach(Transform invader in transform)
         {
             invader.gameObject.SetActive(true);

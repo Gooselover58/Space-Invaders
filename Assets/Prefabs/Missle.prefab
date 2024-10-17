@@ -30,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 9cb856fc7ca889c4191bc2a1d771ae4d, type: 3}
     - target: {fileID: 3316924114203885339, guid: 5d0aec60716c43644a224fbed9536f2a, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3316924114203885339, guid: 5d0aec60716c43644a224fbed9536f2a, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3316924114203885339, guid: 5d0aec60716c43644a224fbed9536f2a, type: 3}
       propertyPath: m_Color.r
@@ -116,6 +116,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7392292734461532105, guid: 5d0aec60716c43644a224fbed9536f2a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6030270938080876101}
+    - targetCorrespondingSourceObject: {fileID: 7392292734461532105, guid: 5d0aec60716c43644a224fbed9536f2a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7195833326704508983}
   m_SourcePrefab: {fileID: 100100000, guid: 5d0aec60716c43644a224fbed9536f2a, type: 3}
 --- !u!1 &6455478923663831442 stripped
 GameObject:
@@ -134,3 +137,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956c0578bf990a7489e0cbccddbbd7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &-7195833326704508983
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6455478923663831442}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7a31b9d4963db9f4ab8384b3315e6507, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

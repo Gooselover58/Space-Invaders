@@ -41,6 +41,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5455577389997519612, guid: 5d0aec60716c43644a224fbed9536f2a, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455577389997519612, guid: 5d0aec60716c43644a224fbed9536f2a, type: 3}
+      propertyPath: m_Offset.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455577389997519612, guid: 5d0aec60716c43644a224fbed9536f2a, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 384
       objectReference: {fileID: 0}

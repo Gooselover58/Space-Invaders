@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -12,12 +13,14 @@ public class Player : MonoBehaviour
     GameObject laser;
     float speed = 5f;
     private bool isDying;
+    private SpriteRenderer sr;
     private BoxCollider2D col;
     private ParticleSystem deathPart;
     private float time;
 
     private void Awake()
     {
+        sr = GetComponent<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         isDying = false;
@@ -59,6 +62,19 @@ public class Player : MonoBehaviour
         transform.position = position;
     }
 
+    private IEnumerator invicFrames()
+    {
+        col.enabled = false;
+        bool state = false;
+        for (int i = 0; i < 20; i++)
+        {
+            sr.enabled = state;
+            state = !state;
+            yield return new WaitForSeconds(0.1f);
+        }
+        col.enabled = true;
+    }
+
     private IEnumerator DeathSequence()
     {
         col.enabled = false;
@@ -66,7 +82,12 @@ public class Player : MonoBehaviour
         transform.localRotation = Quaternion.Euler(0, 0, 45);
         deathPart.Play();
         yield return new WaitForSeconds(3);
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        deathPart.Stop();
+        col.enabled = true;
+        isDying = false;
         GameManager.Instance.OnPlayerKilled(this);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -74,7 +95,14 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Missile") || collision.gameObject.layer == LayerMask.NameToLayer("Invader"))
         {
             GameManager.Instance.ChangeLives(1);
-            StartCoroutine(DeathSequence());
+            if (GameManager.Instance.playerDead)
+            {
+                StartCoroutine(DeathSequence());
+            }
+            else
+            {
+                StartCoroutine(invicFrames());
+            }
         }
     }
 }

@@ -40,7 +40,7 @@ public class Laser : Projectile
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Invader") && isOnBeat)
         {
-
+            GameManager.Instance.ChangeScore(5);
         }
         else if(bunker == null) //Om det inte är en bunker vi träffat så ska skottet försvinna.
         {
@@ -48,7 +48,13 @@ public class Laser : Projectile
             {
                 GameManager.Instance.PlayCollisionParts(transform.position);
             }
+            else
+            {
+                GameManager.Instance.ChangeScore(5);
+            }
             Destroy(gameObject);
+            GameManager.Instance.scoreMult = 1f;
+            GameManager.Instance.UpdateScoreUI();
         }
     }
 }

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float beatInterval;
     [SerializeField] float beatDuration;
     [SerializeField] TextMeshProUGUI roundText;
+    [SerializeField] TextMeshProUGUI scoreText;
     private Player player;
     private Invaders invaders;
     private Bunker[] bunkers;
@@ -21,10 +22,14 @@ public class GameManager : MonoBehaviour
     private ParticleSystem collisionParticles;
     private AudioSource hitSound;
     private AudioClip shootSound;
-    private int round;
+    public int round;
     private int playerLives;
     private int playerScore;
+    public float scoreMult;
+    private float scoreTextSize;
     public bool playerDead;
+    private bool playerReallyDead;
+    private Color scoreTextColor;
 
     //Används ej just nu, men ni kan använda de senare
     public int score { get; private set; } = 0;
@@ -32,7 +37,11 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        scoreMult = 1;
+        scoreTextSize = 7f;
         playerDead = false;
+        playerReallyDead = false;
+        scoreTextColor = scoreText.color;
         collisionParticles = GameObject.Find("CollisionParticles").GetComponent<ParticleSystem>();
         shootSound = Resources.Load<AudioClip>("Sound/35678__jobro__laser10");
         roundText.gameObject.SetActive(false);
@@ -69,7 +78,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (playerDead && Input.GetKeyDown(KeyCode.Return))
+        if (playerReallyDead && Input.GetKeyDown(KeyCode.Return))
         {
             NewGame();
         }
@@ -122,8 +131,11 @@ public class GameManager : MonoBehaviour
     private void NewGame()
     {
         round = 1;
+        playerDead = false;
+        playerReallyDead = false;
         SetScore(0);
         SetLives(3);
+        UpdateScoreUI();
         NewRound();
     }
 
@@ -141,19 +153,18 @@ public class GameManager : MonoBehaviour
         roundText.gameObject.SetActive(false);
         invaders.ResetInvaders();
         invaders.gameObject.SetActive(true);
-
         for (int i = 0; i < bunkers.Length; i++)
         {
             bunkers[i].ResetBunker();
         }
-        //StartCoroutine(RoundText());
         invaders.CreateInvaderGrid();
+        invaders.ResetInvaders();
         Respawn();
     }
 
     private void Respawn()
     {
-        Vector3 position = player.transform.position;
+        Vector3 position = new Vector3(0, -4, 0);
         position.x = 0f;
         player.transform.position = position;
         player.gameObject.SetActive(true);
@@ -167,6 +178,16 @@ public class GameManager : MonoBehaviour
     private void SetScore(int score)
     {
         playerScore = score;
+        UpdateScoreUI();
+    }
+
+    public void ChangeScore(int change)
+    {
+        int thisScore = Mathf.RoundToInt(change * scoreMult);
+        score += thisScore;
+        scoreMult += 1.01f;
+        scoreMult = Mathf.Clamp(scoreMult, 1, 1.5f);
+        UpdateScoreUI();
     }
 
     private void SetLives(int lives)
@@ -177,11 +198,25 @@ public class GameManager : MonoBehaviour
     public void ChangeLives(int change)
     {
         playerLives -= change;
+        if (playerLives <= 0)
+        {
+            playerDead = true;
+        }
+    }
+
+    public void UpdateScoreUI()
+    {
+        float newFontSize = scoreTextSize + (scoreMult - 1);
+        newFontSize = Mathf.Clamp(newFontSize, 7f, 8.5f);
+        scoreText.fontSize = newFontSize;
+        scoreText.text = $"{score}";
+        scoreText.color = new Color(scoreTextColor.r, scoreTextColor.g, scoreTextColor.b, scoreTextColor.a * scoreMult);
     }
 
     public void OnPlayerKilled(Player player)
     {
         player.gameObject.SetActive(false);
+        playerReallyDead = true;
     }
 
     public void PlayShootSound()
@@ -197,7 +232,6 @@ public class GameManager : MonoBehaviour
         hitSound.PlayOneShot(hitSound.clip, pitch);
         pitch += 0.05f;
         invader.gameObject.SetActive(false);
-
         if (invaders.GetInvaderCount() == 0)
         {
             NewRound();

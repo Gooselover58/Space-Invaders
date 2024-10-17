@@ -6,12 +6,14 @@ using UnityEngine;
 
 public class Invaders : MonoBehaviour
 {
-    public GameObject[] prefab = new GameObject[5];
+    public GameObject[] prefab = new GameObject[7];
     public static List<GameObject> invaders = new List<GameObject>();
 
     [SerializeField] float shootDelay;
-    private int row = 5;
-    private int col = 11;
+    [SerializeField] Transform invaderHolder;
+    private int row = 7;
+    private int col = 17;
+    private bool hasCreatedGrid;
 
     private Vector3 initialPosition;
     private Vector3 direction = Vector3.right;
@@ -21,8 +23,9 @@ public class Invaders : MonoBehaviour
 
     private void Awake()
     {
-        row = 5;
-        col = 11;
+        hasCreatedGrid = false;
+        row = 7;
+        col = 17;
         initialPosition = transform.position;
         speed = 1f;
     }
@@ -35,22 +38,28 @@ public class Invaders : MonoBehaviour
     //Skapar själva griden med alla invaders.
     public void CreateInvaderGrid()
     {
-        for (int r = 0; r < row; r++)
+        if (!hasCreatedGrid)
         {
-            float width = 2f * (col - 1);
-            float height = 2f * (row - 1);
-
-            //för att centerar invaders
-            Vector2 centerOffset = new Vector2(-width * 0.5f, -height * 0.5f);
-            Vector3 rowPosition = new Vector3(centerOffset.x, (2f * r) + centerOffset.y, 0f);
-            
-            for (int c = 0; c < col; c++)
+            hasCreatedGrid = true;
+            for (int r = 0; r < row; r++)
             {
-                GameObject tempInvader = Instantiate(prefab[r], transform);
-                invaders.Add(tempInvader);
-                Vector3 position = rowPosition;
-                position.x += 2f * c;
-                tempInvader.transform.localPosition = position;
+                float width = 2f * (col - 1);
+                float height = 2f * (row - 1);
+
+                //för att centerar invaders
+                Vector2 centerOffset = new Vector2(-width * 0.5f, -height * 0.5f);
+                Vector3 rowPosition = new Vector3(centerOffset.x, (2f * r) + centerOffset.y, 0f);
+
+                for (int c = 0; c < col; c++)
+                {
+                    Transform inWhichToSpawn = (r > 5) ? invaderHolder : transform;
+                    GameObject tempInvader = Instantiate(prefab[r], inWhichToSpawn);
+                    invaders.Add(tempInvader);
+                    tempInvader.SetActive(false);
+                    Vector3 position = rowPosition;
+                    position.x += 2f * c;
+                    tempInvader.transform.localPosition = position;
+                }
             }
         }
     }
@@ -58,12 +67,24 @@ public class Invaders : MonoBehaviour
     //Aktiverar alla invaders igen och placerar från ursprungsposition
     public void ResetInvaders()
     {
+        if (GameManager.Instance.round == 3 || GameManager.Instance.round == 6)
+        {
+            IncreaseInvaderCount();
+        }
         direction = Vector3.right;
         transform.position = initialPosition;
-        speed *= 1.1f;
+        speed *= 1.5f;
         foreach(Transform invader in transform)
         {
             invader.gameObject.SetActive(true);
+        }
+    }
+
+    private void IncreaseInvaderCount()
+    {
+        for (int i = 0; i < col; i++)
+        {
+            invaderHolder.GetChild(i).parent = transform;
         }
     }
 

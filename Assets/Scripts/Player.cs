@@ -8,6 +8,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public GameObject laserPrefab;
+    Animator animator;
     GameObject laser;
     float speed = 5f;
     private bool isDying;
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         col = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
         isDying = false;
         deathPart = transform.GetChild(0).GetComponent<ParticleSystem>();
     }
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) && laser == null)
             {
+                animator.SetTrigger("shoot");
                 GameManager.Instance.pitch = Random.Range(0.8f, 1.1f);
                 GameManager.Instance.PlayShootSound();
                 laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);

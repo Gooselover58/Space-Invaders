@@ -47,11 +47,14 @@ public class Player : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) && laser == null)
             {
-                animator.SetTrigger("shoot");
+                
                 GameManager.Instance.pitch = Random.Range(0.8f, 1.1f);
                 GameManager.Instance.PlayShootSound();
                 laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
+                //animator.SetTrigger("Shoot");
             }
+            animator.SetBool("MoveLeft", Input.GetKey(KeyCode.A));
+            animator.SetBool("MoveRight", Input.GetKey(KeyCode.D));
         }
         else
         {

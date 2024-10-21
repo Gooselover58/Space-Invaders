@@ -73,7 +73,7 @@ public class Invaders : MonoBehaviour
         }*/
         direction = Vector3.right;
         transform.position = initialPosition;
-        speed *= 1.3f;
+        speed *= 1.1f;
         foreach(Transform invader in transform)
         {
             invader.gameObject.SetActive(true);

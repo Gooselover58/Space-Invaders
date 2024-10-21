@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -26,7 +27,7 @@ public class BigLaser : MonoBehaviour
         dir = rb.position - mouse;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90f;
         rb.rotation = angle;
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             FireLaser(1f);
         }
@@ -34,14 +35,33 @@ public class BigLaser : MonoBehaviour
 
     private void FireLaser(float intensity)
     {
-        laser.positionCount = 2;
-        laser.widthMultiplier = 1;
+        laser.positionCount = 5;
+        laser.widthMultiplier = 1f;
         laser.SetPosition(0, shootPoint.position);
         LayerMask bounds = LayerMask.GetMask("Boundary");
-        RaycastHit2D ray = Physics2D.Raycast(shootPoint.position, -dir.normalized, Mathf.Infinity, bounds);
-        if (ray.collider != null)
+        LayerMask enemies = LayerMask.GetMask("Invader");
+        Vector2 rayDir = -dir.normalized;
+        for (int i = 0; i < 4; i++)
         {
-            laser.SetPosition(1, ray.point);
+            RaycastHit2D ray = Physics2D.Raycast(shootPoint.position, rayDir, Mathf.Infinity, bounds);
+            if (ray.collider != null)
+            {
+                RaycastHit2D[] enemiesHit = Physics2D.CircleCastAll(cam.ScreenToWorldPoint(shootPoint.position), 1f, rayDir, Mathf.Infinity, enemies);
+                foreach (RaycastHit2D hit in enemiesHit)
+                {
+                    if (hit.collider != null && hit.collider.GetComponent<Invader>() != null)
+                    {
+                        GameManager.Instance.OnInvaderKilled(hit.collider.GetComponent<Invader>());
+                        GameManager.Instance.ChangeScore(5);
+                    }
+                }
+                laser.SetPosition(i + 1, ray.point);
+                Vector2 newDir = Vector2.Reflect(rayDir, ray.normal);
+                rayDir = newDir;
+            }
         }
+        GameManager.Instance.pitch = Random.Range(0.8f, 1.1f);
+        GameManager.Instance.scoreMult = 1f;
+        GameManager.Instance.UpdateScoreUI();
     }
 }

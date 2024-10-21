@@ -105,6 +105,7 @@ public class Player : MonoBehaviour
             else
             {
                 StartCoroutine(invicFrames());
+                animator.SetTrigger("Hit");
             }
         }
     }

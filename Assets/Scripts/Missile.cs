@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Missile : Projectile
 {
-    GameObject Explosion;
+    public GameObject Explosion;
     private void Awake()
     { 
         //Explosion = FindAnyObjectByType(Missile)
@@ -22,6 +22,10 @@ public class Missile : Projectile
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameManager.Instance.PlayCollisionParts(transform.position);
+        GameObject explosionInstance = Instantiate(Explosion, transform.position, Quaternion.identity);
+
+        // Destroy the explosion object after 1 second
+        Destroy(explosionInstance, 0.5f);
         Destroy(gameObject); //så fort den krockar med något så ska den försvinna.
     }
    

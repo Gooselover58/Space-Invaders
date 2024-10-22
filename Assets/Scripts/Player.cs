@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
                 GameManager.Instance.pitch = Random.Range(0.8f, 1.1f);
                 GameManager.Instance.PlayShootSound();
                 laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
-                //animator.SetTrigger("Shoot");
+                animator.SetTrigger("Shoot");
             }
             animator.SetBool("MoveLeft", Input.GetKey(KeyCode.A));
             animator.SetBool("MoveRight", Input.GetKey(KeyCode.D));
@@ -108,5 +108,6 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("Hit");
             }
         }
-    }
+    } 
+   
 }

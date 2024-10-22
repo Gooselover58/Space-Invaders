@@ -8,6 +8,7 @@ using UnityEngine;
 public class Laser : Projectile
 {
     private bool isOnBeat;
+    public GameObject Explosion;
 
     private void Awake()
     {
@@ -52,6 +53,10 @@ public class Laser : Projectile
             {
                 GameManager.Instance.ChangeScore(5);
             }
+            GameObject explosionInstance = Instantiate(Explosion, transform.position, Quaternion.identity);
+
+            // Destroy the explosion object after 1 second
+            Destroy(explosionInstance, 0.3f);
             Destroy(gameObject);
             GameManager.Instance.scoreMult = 1f;
             GameManager.Instance.UpdateScoreUI();

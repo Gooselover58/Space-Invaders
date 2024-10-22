@@ -7,8 +7,10 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Missile : Projectile
 {
+    GameObject Explosion;
     private void Awake()
-    {
+    { 
+        //Explosion = FindAnyObjectByType(Missile)
         direction = Vector3.down;
     }
    

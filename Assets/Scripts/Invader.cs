@@ -12,13 +12,14 @@ public class Invader : MonoBehaviour
 {
     public Sprite[] animationSprites = new Sprite[2];
     public float animationTime;
-
+    Animator animator;
     SpriteRenderer spRend;
     int animationFrame;
     // Start is called before the first frame update
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         spRend = GetComponent<SpriteRenderer>();
         spRend.sprite = animationSprites[0];
     }
@@ -45,12 +46,18 @@ public class Invader : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {
-            GameManager.Instance.OnInvaderKilled(this);
+            animator.SetTrigger("Hit");
+            Invoke("Destroy", 0.5f);
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nått nedre kanten
         {
             GameManager.Instance.OnBoundaryReached();
         }
+    }
+    public void Destroy()
+    {
+        GameManager.Instance.OnInvaderKilled(this);
+        
     }
 
 }

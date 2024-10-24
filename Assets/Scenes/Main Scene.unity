@@ -370,7 +370,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9bbbd02a918567047ac074a4922dbf25, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c43be6a21ab4e8a4fb5040ec0e782cea, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1415,7 +1415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onBeat: 0
   pitch: 0
-  beatInterval: 0.7
+  beatInterval: 0.5
   beatDuration: 0.1
   roundText: {fileID: 1286375411}
   scoreText: {fileID: 1267066689}

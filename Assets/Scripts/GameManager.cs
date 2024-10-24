@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public float scoreMult;
     private float scoreTextSize;
     public bool playerDead;
-    private bool playerReallyDead;
+    public bool playerReallyDead;
     private Color scoreTextColor;
 
     //Används ej just nu, men ni kan använda de senare
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
         deathParticles.Emit(emitParams, 20);
     }
 
-    private void NewGame()
+    public void NewGame()
     {
         round = 1;
         playerDead = false;

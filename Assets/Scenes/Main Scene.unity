@@ -1328,6 +1328,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 958b0d9c2b1ea054ebf80711a9cf3ce6, type: 3}
+--- !u!1001 &1119865663
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6114896957048422931, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+      propertyPath: m_Name
+      value: MysteryShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663969182906292424, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663969182906292424, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663969182906292424, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663969182906292424, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663969182906292424, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663969182906292424, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663969182906292424, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663969182906292424, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663969182906292424, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663969182906292424, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663969182906292424, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663969182906292424, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6114896957048422931, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2139150528}
+  m_SourcePrefab: {fileID: 100100000, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
 --- !u!1 &1162568059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,6 +1490,7 @@ MonoBehaviour:
   round: 0
   scoreMult: 0
   playerDead: 0
+  playerReallyDead: 0
 --- !u!4 &1209309996
 Transform:
   m_ObjectHideFlags: 0
@@ -2184,6 +2253,32 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!1 &2139150523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6114896957048422931, guid: a7b72bfe47e70a84f9612a29c6a27e51, type: 3}
+  m_PrefabInstance: {fileID: 1119865663}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2139150528
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139150523}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5ea1df5ef137e0d43a3cb893536bdc66, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2206,3 +2301,4 @@ SceneRoots:
   - {fileID: 489816003}
   - {fileID: 1460131795}
   - {fileID: 2088929266}
+  - {fileID: 1119865663}

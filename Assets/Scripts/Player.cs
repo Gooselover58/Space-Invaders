@@ -90,10 +90,8 @@ public class Player : MonoBehaviour
         col.enabled = true;
         isDying = false;
         GameManager.Instance.OnPlayerKilled(this);
-        string currentSceneName = SceneManager.GetActiveScene().name;
-
-        // Reload the current scene
-        SceneManager.LoadScene(currentSceneName);
+        GameManager.Instance.NewGame();
+        
 
     }
 

@@ -103,6 +103,7 @@ public class Player : MonoBehaviour
             if (GameManager.Instance.playerDead)
             {
                 StartCoroutine(DeathSequence());
+                GameManager.Instance.NewGame();
             }
             else
             {

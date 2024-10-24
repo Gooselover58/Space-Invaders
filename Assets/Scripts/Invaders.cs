@@ -19,7 +19,7 @@ public class Invaders : MonoBehaviour
     private Vector3 direction = Vector3.right;
 
     public GameObject missilePrefab;
-    public float speed;
+    public static float speed;
 
     private void Awake()
     {

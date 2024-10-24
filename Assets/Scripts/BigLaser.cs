@@ -46,7 +46,8 @@ public class BigLaser : MonoBehaviour
             RaycastHit2D ray = Physics2D.Raycast(shootPoint.position, rayDir, Mathf.Infinity, bounds);
             if (ray.collider != null)
             {
-                RaycastHit2D[] enemiesHit = Physics2D.CircleCastAll(cam.ScreenToWorldPoint(shootPoint.position), 1f, rayDir, Mathf.Infinity, enemies);
+                RaycastHit2D[] enemiesHit = Physics2D.CircleCastAll(shootPoint.position, 1f, rayDir, Mathf.Infinity, enemies);
+                Debug.Log(rayDir);
                 foreach (RaycastHit2D hit in enemiesHit)
                 {
                     if (hit.collider != null && hit.collider.GetComponent<Invader>() != null)
@@ -57,6 +58,7 @@ public class BigLaser : MonoBehaviour
                 }
                 laser.SetPosition(i + 1, ray.point);
                 Vector2 newDir = Vector2.Reflect(rayDir, ray.normal);
+                Debug.Log(newDir);
                 rayDir = newDir;
             }
         }

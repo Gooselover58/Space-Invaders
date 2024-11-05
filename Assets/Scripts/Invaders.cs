@@ -27,7 +27,7 @@ public class Invaders : MonoBehaviour
         row = 7;
         col = 13;
         initialPosition = transform.position;
-        //speed = 0.7f;
+        speed = 0.7f;
     }
 
     private void Start()
